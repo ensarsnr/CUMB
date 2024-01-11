@@ -1,12 +1,11 @@
 import 'dart:io';
 
-import 'package:cumb/constants/button_colors/home_button_colors.dart';
-import 'package:cumb/constants/home/const_text_home.dart';
-import 'package:cumb/constants/nav_colors/home_nav_colors.dart';
+import 'package:cumb/constants/colors/constant_colors.dart';
+import 'package:cumb/constants/texts/constant_texts.dart';
 import 'package:cumb/views/own_words.dart';
 import 'package:cumb/views/ready_words.dart';
-import 'package:cumb/widgets/buttons/home_buttons.dart';
-import 'package:cumb/widgets/texts/home_button_text.dart';
+import 'package:cumb/widgets/buttons/button_widget.dart';
+import 'package:cumb/widgets/texts/button_text.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -14,7 +13,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // responsive yapı için aldığım değerler
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -24,7 +22,7 @@ class HomeView extends StatelessWidget {
         toolbarHeight: screenHeight * 0.15,
         backgroundColor: HomeNavColors.navColors,
         centerTitle: true,
-        title: HomeButtonText(
+        title: ButtonText(
           text: HomeText.title,
           fontSize: screenWidth * 0.10,
         ),
@@ -33,29 +31,29 @@ class HomeView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            HomeButton(
+            ButtonWT(
               onPressed: () => gotoReadyWords(context),
               height: screenHeight * 0.10,
               width: screenWidth * 0.8,
               backgroundColor: HomeButtonColors.buttonColor,
-              child: HomeButtonText(
+              child: ButtonText(
                 text: HomeText.readyWords,
                 fontSize: screenWidth * 0.06,
               ),
             ),
             SizedBox(height: screenHeight * 0.03),
-            HomeButton(
+            ButtonWT(
               onPressed: () => gotoOwnWords(context),
               height: screenHeight * 0.10,
               width: screenWidth * 0.8,
               backgroundColor: HomeButtonColors.buttonColor,
-              child: HomeButtonText(
+              child: ButtonText(
                 text: HomeText.ownWords,
                 fontSize: screenWidth * 0.06,
               ),
             ),
             SizedBox(height: screenHeight * 0.03),
-            HomeButton(
+            ButtonWT(
               onPressed: () {
                 // uygulamayı sonlandırır.
                 exit(0);
@@ -63,7 +61,7 @@ class HomeView extends StatelessWidget {
               height: screenHeight * 0.10,
               width: screenWidth * 0.8,
               backgroundColor: HomeButtonColors.buttonColor,
-              child: HomeButtonText(
+              child: ButtonText(
                 text: HomeText.exit,
                 fontSize: screenWidth * 0.06,
               ),
@@ -88,7 +86,7 @@ void gotoOwnWords(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => const OwnWords(),
+      builder: (context) => OwnWords(),
     ),
   );
 }
