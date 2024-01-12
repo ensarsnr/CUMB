@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class OwnDetails extends StatelessWidget {
   final String title;
 
-  OwnDetails({required this.title});
+  const OwnDetails({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class OwnDetails extends StatelessWidget {
       body: Center(
         child: Text(
           'Burada $title kelimesi ile ilgili detayları görebilirsiniz.',
-          style: TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 20),
         ),
       ),
     );
