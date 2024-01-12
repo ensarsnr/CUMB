@@ -35,6 +35,19 @@ class _OwnDetailsState extends State<OwnDetails> {
     itemBox = Hive.box<ItemModel>("itemBox");
   }
 
+  void deleteWord(int index) async {
+    if (index >= 0 && index < wordsBox.length) {
+      // wordsBox'dan ilgili WordsModel'ı al
+      WordsModel? deletedWordsModel = wordsBox.getAt(index);
+
+      // Eğer WordsModel bulunduysa silme işlemini gerçekleştir
+      if (deletedWordsModel != null) {
+        wordsBox.deleteAt(wordsBox.length - index - 1);
+        setState(() {});
+      }
+    }
+  }
+
   void openWordsBox() async {
     // wordsBox'ı açma işlemi, daha önce açılmadıysa
     if (!Hive.isBoxOpen("wordsBox")) {
@@ -71,14 +84,23 @@ class _OwnDetailsState extends State<OwnDetails> {
       List<WordsModel?> wordsForItem = getWordsForItem(selectedItem.hashCode);
       return Scaffold(
         appBar: AppBar(
-          title: Text(widget.title), // widget.title kullanıldı
+          title: Text(widget.title),
         ),
         body: ListView.builder(
           itemCount: wordsForItem.length,
           itemBuilder: (context, index) {
+            // wordsForItem[index] elemanını al
+            WordsModel? currentWordsModel = wordsForItem[index];
+
             return ListTile(
-              title: Text("Word: ${wordsForItem[index]?.words}"),
-              subtitle: Text("Meaning: ${wordsForItem[index]?.itemId}"),
+              title: Text("Kelime: ${currentWordsModel?.words[0] ?? ''}"),
+              subtitle: Text("Anlamı: ${currentWordsModel?.words[1] ?? ''}"),
+              trailing: IconButton(
+                onPressed: () {
+                  deleteWord(index);
+                },
+                icon: const Icon(Icons.delete),
+              ),
             );
           },
         ),
@@ -91,7 +113,7 @@ class _OwnDetailsState extends State<OwnDetails> {
                 String secondWord = "";
 
                 return AlertDialog(
-                  title: const Text("Kelime Ekle"),
+                  title: Text("Kelime Ekle"),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -118,19 +140,11 @@ class _OwnDetailsState extends State<OwnDetails> {
                   actions: [
                     ButtonWT(
                       onPressed: () {
-                        // Eğer hem birinci kelime hem de ikinci kelime doluysa işlemi gerçekleştir
                         if (firstWord.isNotEmpty && secondWord.isNotEmpty) {
-                          // Seçilen öğenin ID'sini al
                           int itemId = selectedItem.hashCode;
-
-                          // Yeni WordsModel nesnesi oluştur
                           WordsModel newWordsModel =
                               WordsModel([firstWord, secondWord], itemId);
-
-                          // WordsModel'ı wordsBox'a ekle
                           wordsBox.add(newWordsModel);
-
-                          // Dialog'ı kapat
                           Navigator.pop(context);
                         }
                       },
