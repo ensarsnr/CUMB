@@ -86,7 +86,7 @@ void gotoOwnWords(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => OwnWords(),
+      builder: (context) => const OwnWords(),
     ),
   );
 }
