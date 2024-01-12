@@ -37,9 +37,8 @@ class _OwnWordsState extends State<OwnWords> {
   }
 
   List<ItemModel?> createReversedItemList(Box<ItemModel> itemBox) {
-    return List.generate(itemBox.length,
-            (index) => itemBox.getAt(itemBox.length - index - 1)) ??
-        [];
+    return List.generate(
+        itemBox.length, (index) => itemBox.getAt(itemBox.length - index - 1));
   }
 
   Widget buildListView(List<ItemModel?> reversedItems) {
