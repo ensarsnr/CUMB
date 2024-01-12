@@ -5,6 +5,8 @@ import 'package:cumb/widgets/dialog/own_words_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+//! Aynı isimde grup oluşturmaması gerekiyor. Oluşturulduğunda mantıksal hata ortaya çıkıyor.
+
 class OwnWords extends StatefulWidget {
   const OwnWords({Key? key}) : super(key: key);
 
