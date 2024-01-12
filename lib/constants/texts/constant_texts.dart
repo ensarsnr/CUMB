@@ -11,6 +11,8 @@ class OwnWordDialog {
   static const String createdCard = "Kart oluştur";
   static const String cardName = "Kart ismi";
   static const String addCorrespondingWord = "Karşılık gelen";
+  static const String word = "Birinci kelime";
+  static const String word2 = "İkinci kelime";
 }
 
 // OwnWord sayfasına ait kelimeler
