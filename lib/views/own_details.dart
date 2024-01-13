@@ -83,6 +83,7 @@ class _OwnDetailsState extends State<OwnDetails> {
       // Seçilen öğenin ID'si ile ilişkili WordsModel'ları al
       List<WordsModel?> wordsForItem = getWordsForItem(selectedItem.hashCode);
       return Scaffold(
+        extendBody: true,
         appBar: AppBar(
           title: Text(widget.title),
         ),
@@ -104,6 +105,7 @@ class _OwnDetailsState extends State<OwnDetails> {
             );
           },
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showDialog(
@@ -113,7 +115,7 @@ class _OwnDetailsState extends State<OwnDetails> {
                 String secondWord = "";
 
                 return AlertDialog(
-                  title: Text("Kelime Ekle"),
+                  title: const Text("Kelime Ekle"),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -162,6 +164,47 @@ class _OwnDetailsState extends State<OwnDetails> {
             );
           },
           child: const Icon(Icons.add),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          height: 60,
+          color: Colors.cyan.shade400,
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 5,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.black,
+                ),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.black,
+                ),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.print,
+                  color: Colors.black,
+                ),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.people,
+                  color: Colors.black,
+                ),
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
       );
     } else {
